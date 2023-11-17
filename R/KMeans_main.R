@@ -53,40 +53,28 @@ kmeans.core <- function(dataSet, kclust, tol=1e-6) {
 #' @param dataSet input dataset
 #' @param kclust number of cluster
 #' @param do.plot TRUE if user needs visual results of clustering of points with two-dimensional features
-#' @param comments TRUE if user needs comments on the clustering result
 #' @return A list containing centroids, cluster index and max distance within groups
 #' @examples
 #' dataSet <- matrix(c(0,0,1,0,0,1,1,1,2,1,1,2,2,2,3,2,6,6,7,6,
 #' 8,6,6,7,7,7,8,7,9,8,7,8,8,8,9,9,8,9,9,5), byrow=TRUE, ncol=2)
 #' kclust = 3
-#' KMeans(dataSet, kclust, do.plot=TRUE, comments=TRUE)
+#' KMeans(dataSet, kclust, do.plot=TRUE)
 #' @import ggplot2
 #' @export
 
-KMeans <- function(dataSet, kclust, do.plot=TRUE, comments=FALSE) {
+KMeans <- function(dataSet, kclust, do.plot=TRUE) {
   kmeansOut <- kmeans.core(dataSet, kclust)
 
-  if (do.plot) {
-    if (ncol(dataSet) != 2) {
-      print('Visualizing data beyond two dimensions may lead to suboptimal visualization outcomes.')
-    } else {
-      data <- data.frame(dataSet)
-      cent.df <- data.frame(kmeansOut$centroids)
+  if (do.plot && (ncol(dataSet) == 2)) {
+    data <- data.frame(dataSet)
+    cent.df <- data.frame(kmeansOut$centroids)
 
-      ggplot() +
-        geom_point(data, mapping=aes(x=X1, y=X2), color = '#ffbc14', size = 4) +
-        geom_point(cent.df, mapping=aes(x=X1, y=X2), shape = 4, color = '#006b7b', size = 5) +
-        labs(title = 'Original Points and Centroids') +
-        theme_minimal() +
-        theme(plot.title = element_text(hjust = 0.5))
-    }
-  }
-
-  if (comments) {
-    print('Clustering Centroids:'); print(kmeansOut$centroids)
-    print('Clustering Features:'); print(kmeansOut$cluster)
-    print('Clustering Index:'); print(kmeansOut$cluster_index)
-    print('Maximum Intra-Cluster Distance:'); print(kmeansOut$withinGroupMaxDist)
+    ggplot() +
+      geom_point(data, mapping=aes(x=X1, y=X2), color = '#ffbc14', size = 4) +
+      geom_point(cent.df, mapping=aes(x=X1, y=X2), shape = 4, color = '#006b7b', size = 5) +
+      labs(title = 'Original Points and Centroids') +
+      theme_minimal() +
+      theme(plot.title = element_text(hjust = 0.5))
   }
 
   return(list(centroids=kmeansOut$centroids, cluster_index=kmeansOut$cluster_index,

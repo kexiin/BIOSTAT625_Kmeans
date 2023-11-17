@@ -4,7 +4,7 @@
 \alias{KMeans}
 \title{A collection of Kmeans results and plots}
 \usage{
-KMeans(dataSet, kclust, do.plot = TRUE, comments = FALSE)
+KMeans(dataSet, kclust, do.plot = TRUE)
 }
 \arguments{
 \item{dataSet}{input dataset}
@@ -12,8 +12,6 @@ KMeans(dataSet, kclust, do.plot = TRUE, comments = FALSE)
 \item{kclust}{number of cluster}
 
 \item{do.plot}{TRUE if user needs visual results of clustering of points with two-dimensional features}
-
-\item{comments}{TRUE if user needs comments on the clustering result}
 }
 \value{
 A list containing centroids, cluster index and max distance within groups
@@ -25,5 +23,5 @@ A collection of Kmeans results and plots
 dataSet <- matrix(c(0,0,1,0,0,1,1,1,2,1,1,2,2,2,3,2,6,6,7,6,
 8,6,6,7,7,7,8,7,9,8,7,8,8,8,9,9,8,9,9,5), byrow=TRUE, ncol=2)
 kclust = 3
-KMeans(dataSet, kclust, do.plot=TRUE, comments=TRUE)
+KMeans(dataSet, kclust, do.plot=TRUE)
 }

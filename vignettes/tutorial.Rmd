@@ -33,11 +33,6 @@ To include plot:
 KMeans(dataSet, kclust=3, do.plot=TRUE)
 ```
 
-To include comments:
-```{r}
-KmeansOutcome <- KMeans(dataSet, kclust=3, comments=TRUE)
-```
-
 To test on larger simulated dataset:
 ```{r}
 larger.data <- rbind(matrix(rnorm(1000, 0.5, 1), ncol = 2), matrix(rnorm(1000, 2, 0.1), ncol = 2))
