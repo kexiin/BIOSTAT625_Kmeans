@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/kexiin/BIOSTAT625_Kmeans/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kexiin/BIOSTAT625_Kmeans?branch=main)
 <!-- badges: end -->
 
-The goal of Kmeans is to partition a dataset into distinct, non-overlapping groups or clusters. Each data point is assigned to one of these clusters based on its similarity to the centroid (center) of the cluster. The algorithm aims to minimize the intra-cluster variance, meaning that the data points within a cluster should be as similar as possible.
+The goal of Kmeans is to partition a data set into distinct, non-overlapping groups or clusters. Each data point is assigned to one of these clusters based on its similarity to the centroid of the cluster. The algorithm aims to minimize the intra-cluster variance, meaning that the data points within a cluster should be as similar as possible.
 
 ## Installation
 
@@ -40,12 +40,13 @@ This is a basic example which shows you how to solve a common problem:
 library(Kmeans)
 
 dataSet <- rbind(matrix(rnorm(100, 0.5, 1), ncol = 2), matrix(rnorm(100, 2, 0.1), ncol = 2))
-KMeans(dataSet, kclust=2, do.plot=TRUE)
+KMeans(dataSet, kclust=2)
 ```
 
 To comparison correctness against the original R function in base library `kmeans`:
 
 ```{r}
+dataSet <- rbind(matrix(rnorm(1000, 0.5, 1), ncol = 2), matrix(rnorm(1000, 2, 0.1), ncol = 2))
 KMeans(dataSet, kclust=2)$centroids
 kmeans(dataSet, 2)$centers
 ```
@@ -54,7 +55,6 @@ The output centers are very similar, indicating that the accuracy of this algori
 
 To comparison efficiency against the original R function in base library `kmeans`:
 ```{r}
-dataSet <- rbind(matrix(rnorm(1000, 0.5, 1), ncol = 2), matrix(rnorm(1000, 2, 0.1), ncol = 2))
 system.time({KMeans(dataSet, kclust=2, do.plot=TRUE)})
 system.time({kmeans(dataSet, 2)})
 ```
