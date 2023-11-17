@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Author](https://img.shields.io/badge/Author-KexinLi-red.svg "Author")](https://kexiin.gitee.io "Author")
 [![R-CMD-check](https://github.com/kexiin/BIOSTAT625_Kmeans/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kexiin/BIOSTAT625_Kmeans/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/kexiin/BIOSTAT625_Kmeans/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kexiin/BIOSTAT625_Kmeans?branch=main)
 <!-- badges: end -->
 
 The goal of Kmeans is to partition a dataset into distinct, non-overlapping groups or clusters. Each data point is assigned to one of these clusters based on its similarity to the centroid (center) of the cluster. The algorithm aims to minimize the intra-cluster variance, meaning that the data points within a cluster should be as similar as possible.
