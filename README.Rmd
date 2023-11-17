@@ -46,7 +46,6 @@ KMeans(dataSet, kclust=2)
 To comparison correctness against the original R function in base library `kmeans`:
 
 ```{r}
-dataSet <- rbind(matrix(rnorm(1000, 0.5, 1), ncol = 2), matrix(rnorm(1000, 2, 0.1), ncol = 2))
 KMeans(dataSet, kclust=2)$centroids
 kmeans(dataSet, 2)$centers
 ```
@@ -55,8 +54,11 @@ The output centers are very similar, indicating that the accuracy of this algori
 
 To comparison efficiency against the original R function in base library `kmeans`:
 ```{r}
-system.time({KMeans(dataSet, kclust=2, do.plot=TRUE)})
-system.time({kmeans(dataSet, 2)})
+library(bench)
+bench::mark(
+  sort(round(KMeans(dataSet, kclust=2)$centroids, 0)),
+  sort(round(kmeans(dataSet, 2)$centers, 0))
+)
 ```
 
 It can be seen from the calculation time that the efficiency of this algorithm is not as efficient as `kmeans` in the base library and needs to be further enhanced.
