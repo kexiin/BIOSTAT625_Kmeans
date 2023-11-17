@@ -1,0 +1,46 @@
+---
+title: "tutorial"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Kmeans)
+```
+
+To use the function `KMeans`:
+```{r}
+dataSet <- matrix(c(0,0,1,0,0,1,1,1,2,1,
+                    1,2,2,2,3,2,6,6,7,6,
+                    8,6,6,7,7,7,8,7,9,8,
+                    7,8,8,8,9,9,8,9,9,5),byrow=TRUE,ncol=2)
+
+KMeans(dataSet, kclust=3)
+```
+
+To include plot:
+```{r}
+KMeans(dataSet, kclust=3, do.plot=TRUE)
+```
+
+To include comments:
+```{r}
+KmeansOutcome <- KMeans(dataSet, kclust=3, comments=TRUE)
+```
+
+To test on larger simulated dataset:
+```{r}
+larger.data <- rbind(matrix(rnorm(100, 0.5, 4.5), ncol = 2), matrix(rnorm(100, 0.5, 0.1), ncol = 2))
+KMeans(larger.data, kclust=2, do.plot=TRUE)
+```
+
